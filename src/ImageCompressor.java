@@ -29,7 +29,9 @@ public class ImageCompressor {
 
     //Check whether the command line argument is valid or not.
     //Return if it is not valid.
-    if (!ap.isInputValid()) return;
+    if (!ap.isInputValid()) {
+      return;
+    }
 
     System.out.println("input file: " + ap.getInputFile());
 

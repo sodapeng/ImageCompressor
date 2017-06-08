@@ -6,6 +6,9 @@ Image source:
 // test Boston image file from
 // http://wheatoncollege.edu/about/our-location/boston/
 
-When I set different compression ratio for an image, the visual and file size differences are merely detectable when the ratio is under 40%. However, when compression ratio goes up continuously, the visual differences and file size are more obvious. We can clealy tell that the compressed image is more blur than the orignal one. And when increase compression ratio from 90% - 99%, the file size decrease much more sharply than increasing the compression ratio from 40% - 50%.
+Image Files:
+https://drive.google.com/file/d/0Bx2vnEKuTknbYjFEZk54LTJ6cjQ/view?usp=sharing
 
-The compression ratio that I would like to use is around 70 % - 80%, the range of which keeps the most of the details of original image, and it can hardly detect differences visiually although it has been compressed. 
+Attempting to compress the images with ratios below 40% produced relatively slight differences to both the image’s appearance and its file size. As we increase the compression ratio, the visual and file-size changes become much more pronounced. By 90%, there are noticeable artifacts and an apparent blockiness to the photos. By 99%, the image becomes very obviously blurred and distorted. File size also seems to decrease more rapidly in the 90-99% range than it did for lower compression ratios.
+
+In most cases, the ideal outcome is likely to maximize the compression (minimize file size) while also having as little impact possible on the quality of the image. For our test images, for example: Seattle.png. We found ratios of around 70-80% to produce a good balance between size reduction and lack of noticeable image degradation.

@@ -34,6 +34,18 @@ public class ArgsProcessorTest {
         assertEquals(ap.getRatio(), (float) 0.75, epsilon);
         assertEquals(ap.getOutputFile(), "/home/output");
         assertEquals(ap.isProgressive(), true);
+        assertTrue(ap.isInputValid());
+    }
+
+    @Test
+    public void testGoodInputWithDifferentOrders() throws Exception {
+        String[] args = {"-o", "/home/output", "-progressive", "-i", "/home/input", "-compress", "75"};
+        ArgsProcessor ap = new ArgsProcessor(args);
+        assertEquals(ap.getInputFile(), "/home/input");
+        assertEquals(ap.getRatio(), (float) 0.75, epsilon);
+        assertEquals(ap.getOutputFile(), "/home/output");
+        assertEquals(ap.isProgressive(), true);
+        assertTrue(ap.isInputValid());
     }
 
     @Test
@@ -44,6 +56,7 @@ public class ArgsProcessorTest {
         assertEquals(ap.getRatio(), (float) 0, epsilon);
         assertEquals(ap.getOutputFile(), "out.png");
         assertEquals(ap.isProgressive(), false);
+        assertTrue(ap.isInputValid());
     }
 
     @Test
@@ -54,6 +67,7 @@ public class ArgsProcessorTest {
         assertEquals(ap.getRatio(), (float) 0.75, epsilon);
         assertEquals(ap.getOutputFile(), "out.png");
         assertEquals(ap.isProgressive(), false);
+        assertTrue(ap.isInputValid());
     }
 
     @Test
@@ -64,6 +78,7 @@ public class ArgsProcessorTest {
         assertEquals(ap.getRatio(), (float) 0, epsilon);
         assertEquals(ap.getOutputFile(), "/home/output");
         assertEquals(ap.isProgressive(), false);
+        assertTrue(ap.isInputValid());
     }
 
     @Test
@@ -74,6 +89,7 @@ public class ArgsProcessorTest {
         assertEquals(ap.getRatio(), (float) 0, epsilon);
         assertEquals(ap.getOutputFile(), "out.png");
         assertEquals(ap.isProgressive(), true);
+        assertTrue(ap.isInputValid());
     }
 
     @Test
@@ -84,6 +100,7 @@ public class ArgsProcessorTest {
         assertEquals(ap.getRatio(), (float) 0.75, epsilon);
         assertEquals(ap.getOutputFile(), "out.png");
         assertEquals(ap.isProgressive(), true);
+        assertTrue(ap.isInputValid());
     }
 
     @Test
@@ -96,6 +113,7 @@ public class ArgsProcessorTest {
         assertEquals(ap.isProgressive(), false);
         assertTrue(outContent.toString()
                 .contains("java ImageCompressor -i input-file [-compress ratio] [-o output-file] [-progressive]"));
+        assertFalse(ap.isInputValid());
     }
 
     @Test
@@ -104,5 +122,9 @@ public class ArgsProcessorTest {
         ArgsProcessor ap = new ArgsProcessor(args);
         assertTrue(outContent.toString()
                 .contains("The ratio does not contain a parsable integer"));
+
+        String[] args2 = {"-i", "/home/input", "-compress", "150"};
+        ArgsProcessor ap2 = new ArgsProcessor(args2);
+        assertFalse(ap2.isInputValid());
     }
 }

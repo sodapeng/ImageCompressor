@@ -217,7 +217,7 @@ public class Image {
    * the most compressed image.
    *
    * @return Return a list of compressed image, start with the original image and end with the most
-   * compressed image
+   *     compressed image
    */
 
   public List<Image> progressiveCompress() {
@@ -248,7 +248,9 @@ public class Image {
       for (int i = 0; i <= len - 1; i++) {
         for (int j = 0; j <= len - 1; j++) {
           for (int p = 0; p < 3; p++) {
-            if ((i == 0 && j == 0) || (i < num && j < num)) continue;
+            if ((i == 0 && j == 0) || (i < num && j < num)) {
+              continue;
+            }
             else {
               squareImage[i][j][p] = 0;
             }
@@ -289,7 +291,9 @@ public class Image {
     for (int i = 0; i < len; i++) {
       for (int j = 0; j < len; j++) {
         for (int p = 0; p < 3; p++) {
-          if (equalsZero(squareImage[i][j][p])) countzero++;
+          if (equalsZero(squareImage[i][j][p])) {
+            countzero++;
+          }
           numberarray[m++] = Math.abs(squareImage[i][j][p]);
         }
       }
@@ -307,9 +311,12 @@ public class Image {
     for (int i = 0; i < len; i++) {
       for (int j = 0; j < len; j++) {
         for (int p = 0; p < 3; p++) {
-          if (i == 0 && j == 0) continue;
-          if (!greater(Math.abs(squareImage[i][j][p]), threshold))
+          if (i == 0 && j == 0) {
+            continue;
+          }
+          if (!greater(Math.abs(squareImage[i][j][p]), threshold)) {
             squareImage[i][j][p] = 0;
+          }
         }
       }
     }

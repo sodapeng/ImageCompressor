@@ -34,9 +34,10 @@ public class CompressUtil {
     double[][][] newimagearray = new double[len][len][3];
     for (int i = 0; i < ori.length; i++) {
       for (int j = 0; j < ori[0].length; j++) {
-        for (int p = 0; p < 3; p++)
+        for (int p = 0; p < 3; p++) {
           //Cast the original integer to double for later calculation.
           newimagearray[i][j][p] = (double) ori[i][j][p];
+        }
       }
     }
     return newimagearray;
@@ -99,19 +100,23 @@ public class CompressUtil {
   private static void transform(double[] array) {
     int len = array.length;
     while (len > 1) {
-      double[] base = new double[len/2];
-      double[] detail = new double[len/2];
+      double[] base = new double[len / 2];
+      double[] detail = new double[len / 2];
       int m = 0;
       int n = 0;
       for (int i = 0; i < len; i += 2) {
-        double base1 = (double) (array[i] + array[i+1]) / Math.sqrt(2);
-        double detail1 = (double) (array[i] - array[i+1]) / Math.sqrt(2);
+        double base1 = (double) (array[i] + array[i + 1]) / Math.sqrt(2);
+        double detail1 = (double) (array[i] - array[i + 1]) / Math.sqrt(2);
         base[m++] = base1;
         detail[n++] = detail1;
       }
       for (int i = 0; i < len; i++) {
-        if (i < len/2) array[i] = base[i];
-        else array[i] = detail[i - len/2];
+        if (i < len / 2) {
+          array[i] = base[i];
+        }
+        else {
+          array[i] = detail[i - len / 2];
+        }
       }
       len = len / 2;
     }
@@ -157,9 +162,9 @@ public class CompressUtil {
     while (start <= array.length) {
       double[] base = new double[start];
       int m = 0;
-      for (int i = 0; i < start/2; i++) {
-        double base1 = (array[i] + array[i+start/2]) / Math.sqrt(2);
-        double detail1 = (array[i] - array[i+start/2]) / Math.sqrt(2);
+      for (int i = 0; i < start / 2; i++) {
+        double base1 = (array[i] + array[i + start / 2]) / Math.sqrt(2);
+        double detail1 = (array[i] - array[i + start / 2]) / Math.sqrt(2);
         base[m++] = base1;
         base[m++] = detail1;
       }
@@ -171,7 +176,7 @@ public class CompressUtil {
   }
 
   /**
-   * Convert the square 3D image double array to 3D image integer array for finial image output
+   * Convert the square 3D image double array to 3D image integer array for finial image output.
    *
    * @param image the square 3D double array of this image
    * @return the square 3D integer array of this image
