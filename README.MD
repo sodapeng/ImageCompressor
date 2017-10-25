@@ -1,6 +1,5 @@
 ## Image Compressor Project:
-
-
+--
 Implemented image Haar Wavelet compression algorithm using Java. The application compressed images with different compression ratios and reduced image size accordingly.
 --
 Haar wavelet compression is an efficient way to perform both lossless and lossy image compression. It relies
